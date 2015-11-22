@@ -1,0 +1,107 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+
+GET     /index                           controllers.Application.accueilRender()
+GET     /                                controllers.Application.accueilRender()
+GET    /connexion                     controllers.Application.renderLogIn()
+GET    /inscription                     controllers.Application.renderInsc()
+GET   /Deconnexion                       controllers.UserController.Disco()
+GET   /infoCompt                          controllers.UserController.logIn()
+POST /connexion                         controllers.UserController.logIn()
+POST /inscription                       controllers.UserController.AddUser()
+GET   /profil                           controllers.Application.RenderProfile()
+GET  /recherche_avancee                 controllers.Application.RenderAdvSearch()
+GET  /erreur                           controllers.Application.Rendererreur()
+GET   /ajouterManga                     controllers.Application.renderAddManga()
+GET   /Manga/:id                        controllers.MangaController.showDetails(id: Integer)
+GET   /AjouterChapitre                  controllers.Application.RenderAddChapter()
+POST  /AddChapter                       controllers.MangaController.addChapter()
+GET   /Manga/:idManga/:nbrChapter      controllers.MangaController.ReadChapter(idManga: Integer,nbrChapter: Integer)
+POST  /submitComment                    controllers.UserController.submitComment()
+POST  /sauveCatFav                      controllers.UserController.saveCatFav()
+POST  /UpdateProfil                     controllers.UserController.UpdateProfil()
+GET   /aleatoire                        controllers.MangaController.aleatoire()
+POST  /recherche                        controllers.MangaController.search()
+POST  /note                              controllers.MangaController.note()
+GET  /RechercheAvancee                  controllers.Application.RenderRechercheAvancee()
+POST /advsrch                            controllers.UserController.advSrch()
+GET /UserPanel                          controllers.UserController.renderUserPanel()
+GET /userAddManga                       controllers.UserController.renderUserAddManga()
+GET /userAddChapter                      controllers.UserController.renderUserAddChapter()
+POST /userAddManga                      controllers.UserController.userAddManga()
+POST /userAddChapter                     controllers.UserController.userAddChapter()
+GET  /ChercherMembre                            controllers.Application.searchUser()
+POST /searchUser                             controllers.UserController.searchUser()
+GET  /mp/:id                            controllers.UserController.mp(id: Integer)
+POST /envoyerMp                         controllers.UserController.sendMp()
+GET  /BoiteReception                    controllers.UserController.BR()
+GET /genre/:genre                       controllers.UserController.afficheGenre(genre : String)
+GET /suggestion                         controllers.UserController.suggestion()
+GET  /bookmark/:id                        controllers.UserController.bookmark(id:Integer)
+GET /deleteBookmark/:id              controllers.UserController.DeleteBookmark(id:Integer)
+
+
+
+
+
+
+#**************************** admin routes
+GET   /ADMIN                              controllers.Application.renderAdmin()
+#GET   /admin_page                         controllers.Application.renderAdminPage()
+POST   /AddManga                            controllers.MangaController.addManga()
+GET    /ajoutManga/AjoutCover                controllers.Application.renderAddCoverManga()
+POST   /ajoutManga/AjoutCover               controllers.MangaController.addCover()
+POST   /UploadingChapter                   controllers.MangaController.UploadChapter()
+GET  /SelectionManga                    controllers.MangaController.AlterManga()
+POST /ModifierManga                      controllers.MangaController.MangaSelectedToAlter()
+POST /mdfManga                           controllers.MangaController.MangaModifie()
+GET  /SupprimerManga                       controllers.MangaController.AlterMangaToDelete()
+POST /SupprimerManga                        controllers.MangaController.DeleteManga()
+GET   /modifierChapitre                      controllers.MangaController.SelectChapterToAlter()
+
+
+GET   /modifierChapitre/:id            controllers.MangaController.RendermodifieChapter(id:Integer)
+GET  /checkManga/:id                           controllers.UserController.checkManga(id:Integer)
+GET  /ajouterCategorie                          controllers.UserController.addCat()
+POST /addCat                                    controllers.UserController.SaveCat()
+GET  /supprimerCategorie                         controllers.UserController.renderdeleteCat()
+POST /deleteCat                                    controllers.UserController.deleteCat()
+POST /setInvisibleAvis                           controllers.UserController.setInvisibleAvis()
+GET /checkChapter/:id                           controllers.UserController.checkChapter(id:Integer)
+POST /mdfChapter                          controllers.UserController.mdfChapter()
+GET /supprimerChapter                     controllers.UserController.SelectTodeleteChapter()
+GET /DeleteChapter/:id                     controllers.UserController.deleteChapter(id:Integer)
+GET /homeMessage                            controllers.UserController.homeMessageRender()
+POST /addHomeMessage                       controllers.UserController.SaveHomeMessage()
+GET /promouvoir                           controllers.UserController.promouvoir()
+POST /searchUserForPromot                  controllers.UserController.searchForPromot()
+GET  /promot/:id                          controllers.UserController.promot(id:Integer)
+
+GET /srvc/manga/:id                      controllers.Services.renderManga(id:Integer)
+GET /deleteSuggestion/:id                   controllers.MangaController.deleteSuggestion(id:Integer)
+GET /detailsChapitre/:id_m/:nbr_c  controllers.MangaController.renderAllPage(id_m:Integer,nbr_c:Integer)
+
+
+
+
+
+#GET    /inscription                     controllers.Application.renderInsc()
+
+#POST  /AddManga                        controllers.Application.AddManga()
+#GET  /AddUser                         controllers.UserController.AddUser()
+#POST /LogIn                           controllers.UserController.LogIn()
+#GET  /Disco                            controllers.UserController.Disco()
+
+
+
+
+
+#GET  /testDB                          controllers.Application.list()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+GET  /*name                                 controllers.Application.erreur(name:String)

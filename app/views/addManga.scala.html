@@ -1,0 +1,147 @@
+@(user :Membre,lm:List[Manga],lc:List[Chapter],list: List[Genre])
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AdminLTE 2 | Dashboard</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ont-awesome.min.css")">
+
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ionicons.min.css")">
+
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/AdminLTE.min.css")">
+
+    <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/skins/_all-skins.min.css")">
+
+
+    <script type="text/javascript" src='@routes.Assets.at("javascripts/testSaisie.js")'></script>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body class="skin-blue">
+
+@import tags._
+
+@Header_Admin(lm:List[Manga],lc:List[Chapter])
+
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="box">
+
+            <div class="box-body">
+
+
+
+
+
+
+
+
+
+            <center>
+    <div id="ajoutmanga">
+
+        <form action="/AddManga"  name="formManga" method="POST" onsubmit="return testAddManga()" >
+            <table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">
+                <tbody>
+                <tr>
+                    <td>
+                        Titre:</td>
+                    <td>
+                        <input name="titre" type="text"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Auteur:</td>
+                    <td>
+                        <input name="auteur" type="text"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Date de Sortie:</td>
+                    <td>
+                        <input type="date" name="releasedate"> </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Artiste:</td>
+                    <td>
+                        <input name="artiste" type="text"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Genre:</td>
+                    <td>
+
+
+                        @for(g <- list) {
+                        <p><input name='genre[]' type='checkbox' value="@g.genre" />@g.genre</p>
+                        }
+
+
+
+
+
+
+
+
+    </td>
+    </tr>
+    <tr>
+        <td>
+            Sommaire:</td>
+        <td>
+            <textarea rows="4" cols="50" name="sommaire"></textarea></td>
+    </tr>
+    <tr>
+        <td>
+            Statue:</td>
+        <td>
+            <select name="statue">
+                <option  value="Termine">Terminé</option>
+                <option value="En cours">En cours</option>
+                <option value="One Shot">One Shot</option>
+                <option value="Annulé">Annulé</option>
+            </select></td>
+    </tr>
+    <tr>
+        <td>
+            Nombre des Chapitres:</td>
+        <td>
+            <input name="nbrchap" type="text" ></td>
+    </tr>
+
+
+    </tbody>
+    </table>
+    <input type="submit" value="Ajouter">
+    </form>
+    </div>
+</center>
+
+
+
+
+</div></div></section></div>
+
+
+</body>
+</html>

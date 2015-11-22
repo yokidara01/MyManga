@@ -1,0 +1,458 @@
+@(user:Membre,m:Manga,listChapter: List[Chapter],lAvis: List[Avis],lcf:List[Catfav])
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Piccolo Theme</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS
+    ================================================== -->
+
+
+
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/jquery-ui.css")">
+
+
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+    <!-- <link rel="stylesheet" href="css/bootstrap-responsive.css">-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap-responsive.css")">
+    <!--<link rel="stylesheet" href="css/prettyPhoto.css" />-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/prettyPhoto.css")">
+    <!--<link rel="stylesheet" href="css/flexslider.css" />-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/flexslider.css")">
+    <!-- <link rel="stylesheet" href="css/custom-styles.css">-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/custom-styles.css")">
+
+
+
+
+    <link rel="stylesheet" href="@routes.Assets.at("stylesheets/jquery-ui.css")">
+    <script src="@routes.Assets.at("javascripts/jquery-ui.js")"></script>
+<script src="@routes.Assets.at("javascripts/jquery-1.11.2.min.js")"></script>
+
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="css/style-ie.css"/>
+    <![endif]-->
+
+    <!-- Favicons
+    ================================================== -->
+
+    <!-- <link rel="shortcut icon" href="img/favicon.ico">-->
+    <!--<img src="@routes.Assets.at("images/favicon.ico")" alt=""   rel="shortcut icon"/>-->
+    <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png">-->
+    <!--<img src="@routes.Assets.at("images/apple-touch-icon.png")" alt=""   rel="apple-touch-icon" />-->
+    <!--<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">-->
+    <!--<img src="@routes.Assets.at("images/apple-touch-icon-72x72.png")" alt="" sizes="72x72" rel="apple-touch-icon" />-->
+    <!--<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">-->
+    <!--<img src="@routes.Assets.at("images/apple-touch-icon-114x114.png")" alt="" sizes="114x114" rel="apple-touch-icon"  />
+    <!-- JS
+    ================================================== -->
+
+
+</head>
+
+<body class="home">
+<div id="fb-root"></div>
+<script>
+
+
+
+
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(@m.id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/fr_FR/sdk.js#xfbml=1&appId=664297127012478&version=v2.0";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+@import tags._
+
+@header(user,lcf)
+
+<div class="row">
+
+    <!-- Gallery Items
+    ================================================== -->
+    <div class="span12 gallery-single">
+
+        <div class="row">
+            <div class="span6">
+                <img src="@routes.Assets.at("images/Mangas/"+m.avatar)" class="align-left thumbnail" alt="image" style="border: gray;
+                border-style: inset;">
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+            <div class="span6">
+                <h2>@m.titre   <div class="fb-share-button" data-href="http://127.0.0.1:9000/Manga/@m.id" data-layout="box_count"></div></h2>
+                <p class="lead">@m.sommaire</p>
+                <ul class="project-info">
+                    <li><h6>Auteur:</h6>@m.auteur</li>
+                    <li><h6>Artiste:</h6>@m.artiste</li>
+                    <li><h6>Date de sortie:</h6>@m.releasedate</li>
+                    <li><h6>Statue:</h6>@m.statue</li>
+                    <li><h6>Genre:</h6>@m.genre</li>
+                    <li><h6>Note:</h6>@m.note %</li>
+                    <li><h6>Voté:</h6>
+
+                        <form action="/note" method="POST">
+                            <script src="@routes.Assets.at("javascripts/jquery-ui2.js")"></script>
+
+                        <div class="slider" id="one"></div>
+<button class="btn btn-inverse" type="submit" id="submit"  >Noté</button>
+
+                        <div id="slider-result"></div>
+
+
+
+
+
+            <input type="hidden" id="hidden1"  name="hidden1" value=""/>
+            <input type="hidden" name="id" value="@m.id"/>
+                        </form>
+
+                        <script>
+                                $('#submit').click(function() {
+        var username = $('#hidden').val();
+        if (username == "") username = 50;
+        $.post('comment.php', {
+            hidden: username
+        }, function(return_data) {
+            alert(return_data);
+        });
+    });
+
+    $(".slider").slider({
+        animate: true,
+        range: "min",
+        value: 50,
+        min: 10,
+        max: 100,
+        step: 10,
+
+        //this updates the hidden form field so we can submit the data using a form
+        slide: function(event, ui) {
+          $("#slider-result").html(ui.value);
+          if($(this).attr("id") ==  "one")
+              $("#hidden1").val(ui.value);
+          else
+              $("#hidden2").val(ui.value);
+        }
+    });
+
+
+                        </script>
+                            <style>
+                                #container{
+                                background:#FFF;
+                                padding:100px 50px 0px 50px;
+                                }
+
+                                /*the slider background*/
+                                .slider {
+                                width:230px;
+                                height:11px;
+                                background:#999;
+                                position:relative;
+                                margin:0;
+                                padding:0 10px;
+                                }
+
+                                /*Style for the slider button*/
+                                .ui-slider-handle {
+                                width:24px;
+                                height:24px;
+                                position:absolute;
+                                top:-7px;
+                                margin-left:-12px;
+                                z-index:200;
+                                background:#AAA;
+                                }
+
+                                /*Result div where the slider value is displayed*/
+                                #slider-result {
+                                font-size:50px;
+                                height:200px;
+                                font-family:Arial, Helvetica, sans-serif;
+                                color:#fff;
+                                width:250px;
+                                text-align:center;
+                                text-shadow:0 1px 1px #000;
+                                font-weight:700;
+                                padding:20px 0;
+                                }
+
+                                /*This is the fill bar colour*/
+                                .ui-widget-header {
+                                background:#666;
+                                height:8px;
+                                left:1px;
+                                top:1px;
+                                position:absolute;
+                                }
+
+                                a {
+                                outline:none;
+                                -moz-outline-style:none;
+                                }
+
+                            </style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </li>
+                </ul>
+
+
+
+                <div class="row the-grid">
+                    @for(ch <- listChapter) {
+                    <div class="span1"><a href="/Manga/@m.id/@ch.nbr_chapter" ><h5>@ch.nbr_chapter</h5></a></div>
+                    }
+                </div>
+
+                <a href="#" class="pull-right"><i class="icon-arrow-left"></i>Retourner</a>
+            </div>
+
+
+            <center>
+                <div style="margin-left: 20px !important;">
+
+                    <ul class='tabs' style="float:left">
+                        <li><a href='#tab1'>Commenter Par Votre Compte</a></li>
+                        <li><a href='#tab2'>Ou par votre compte Facebook</a></li>
+
+                    </ul>
+                    <div id='tab1' >
+                        <form action="/submitComment" method="POST">
+                            <br><br><br>
+                      <textarea cols="550" rows="5" style="border:solid 1px orange;width:550px" name="cmnt"  >
+
+                        </textarea>
+                            <input type="hidden" name="id" value="@m.id">
+                            <input type="submit" value="Commenter">
+                        </form>
+
+                        @for(ch <- lAvis) {
+                        <div class="well" style="margin-left:500px">
+                            @if(user.rang>0){
+                            <div style="float:right">
+                                <form action="/setInvisibleAvis" method="post">
+                                    <input type="hidden" name="id_avis" value="@ch.id">
+                                    <input type="hidden" name="id_manga" value="@m.id">
+                                    <button type="submit">Supprimer</button>
+                                </form>
+                            </div>
+                            }
+                            <h3>@ch.user_name </h3>
+                            <p class="lead"> @ch.cmnt .</p><h6> Commenter le :@ch.date</h6>
+                        </div>
+                        }
+
+                    </div>
+                    <div id='tab2'>
+                        <div class="fb-comments" data-href="http://www.mymanga.tn/Manga/@m.id" data-numposts="5" data-colorscheme="light"></div>
+                    </div>
+
+                </div>
+
+
+
+
+
+        </div>
+
+    </div><!-- End gallery-single-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div><!-- End container row -->
+
+</div> <!-- End Container -->
+
+
+
+
+
+
+<style>
+
+
+
+
+
+
+
+    .tabs li {
+    list-style:none;
+    display:inline;
+    }
+
+    .tabs a {
+    padding:5px 10px;
+    display:inline-block;
+    background:#666;
+    color:#fff;
+    text-decoration:none;
+    }
+
+    .tabs a.active {
+    background:#fff;
+    color:#000;
+    }
+
+</style>
+
+
+<script>
+ // Wait until the DOM has loaded before querying the document
+			$(document).ready(function(){
+				$('ul.tabs').each(function(){
+					// For each set of tabs, we want to keep track of
+					// which tab is active and it's associated content
+					var $active, $content, $links = $(this).find('a');
+
+					// If the location.hash matches one of the links, use that as the active tab.
+					// If no match is found, use the first link as the initial active tab.
+					$active = $($links.filter('[href="'+location.hash+'"]')[0] || $links[0]);
+					$active.addClass('active');
+
+					$content = $($active[0].hash);
+
+					// Hide the remaining content
+					$links.not($active).each(function () {
+						$(this.hash).hide();
+					});
+
+					// Bind the click event handler
+					$(this).on('click', 'a', function(e){
+						// Make the old tab inactive.
+						$active.removeClass('active');
+						$content.hide();
+
+						// Update the variables with the new link and content
+						$active = $(this);
+						$content = $(this.hash);
+
+						// Make the tab active.
+						$active.addClass('active');
+						$content.show();
+
+						// Prevent the anchor's default click action
+						e.preventDefault();
+					});
+				});
+			});
+
+  </script>
+
+
+
+
+
+
+
+
+
+<!-- Footer Area
+    ================================================== -->
+
+
+<div class="footer-container"><!-- Begin Footer -->
+
+    <div class="container" >
+        <div class="row footer-row">
+            <div class="span3 footer-col">
+                <h5>a propos de nous</h5>
+                <!--<img src="img/piccolo-footer-logo.png" alt="Piccolo" />-->
+                <img src="@routes.Assets.at("images/manga1.png")" alt="" style="width: 50%;"  />
+                <br /><br />
+                <address>
+                    <strong>Adresse</strong><br />
+                    24 rue de l'environnement<br />
+                    Akouda sousse TN<br />
+                </address>
+                <ul class="social-icons">
+                    <li><a href="#" class="social-icon facebook"></a></li>
+                    <li><a href="#" class="social-icon twitter"></a></li>
+
+                </ul>
+            </div>
+            <div class="span3 footer-col">
+
+            </div>
+            <div class="span3 footer-col">
+
+            </div>
+            <div class="span3 footer-col">
+
+            </div>
+        </div>
+
+        <div class="row"><!-- Begin Sub Footer -->
+            <div class="span12 footer-col footer-sub">
+                <div class="row no-margin">
+                    <div class="span6"><span class="left">Copyright 2015 MyManga. All rights reserved.</span></div>
+                    <div class="span6">
+                            <span class="right">
+                            <a href="#">accueil</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">recherche avancé</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">suggestion</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">nous aider</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a href="#">profil</a>
+                            </span>
+                    </div>
+                </div>
+            </div>
+        </div><!-- End Sub Footer -->
+
+    </div>
+</div><!-- End Footer -->
+
+<!-- Scroll to Top -->
+<div id="toTop" class="hidden-phone hidden-tablet">Back to Top</div>
+
+</body>
+</html>

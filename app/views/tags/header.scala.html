@@ -1,0 +1,167 @@
+@(user:Membre,lcf:List[Catfav])
+<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+<!--<link rel="stylesheet" href="css/bootstrap.css">-->
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+<!-- <link rel="stylesheet" href="css/bootstrap-responsive.css">-->
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap-responsive.css")">
+<!--<link rel="stylesheet" href="css/prettyPhoto.css" />-->
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/prettyPhoto.css")">
+<!--<link rel="stylesheet" href="css/flexslider.css" />-->
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/flexslider.css")">
+<!-- <link rel="stylesheet" href="css/custom-styles.css">-->
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/custom-styles.css")">
+<!-- /input-group -->
+<!-- Color Bars (above header)-->
+<div class="color-bar-1"></div>
+<div class="color-bar-2 color-bg"></div>
+
+<div class="container">
+
+    <div class="row header"><!-- Begin Header -->
+
+        <!-- Logo
+        ================================================== -->
+        <div class="span5 logo">
+            <a href="/index">
+
+                <!-- <img src="img/piccolo-logo.png" alt="" />-->
+                <!--<img src="@routes.Assets.at("images/logo_barakamon.gif")" alt=""  width="60%"/>-->
+                <img src="@routes.Assets.at("images/manga1.png")" alt=""  width="60%" style="  height: 170px;
+
+                width: 230px;"/>
+
+           </a>
+
+
+
+
+
+       </div>
+
+
+
+
+       <!-- Main Navigation
+       ================================================== -->
+        <div class="span7 navigation">
+            <div class="navbar hidden-phone">
+
+                <ul class="nav">
+
+                    @if(session.get("co") == null) {
+
+                    }else{
+
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Messagier<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/ChercherMembre">Envoyer</a></li>
+                            <li><a href="/BoiteReception">Boîte de reception</a></li>
+
+                        </ul>
+                        }
+
+                    </li>
+                    @if(session.get("co") != null) {
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">Mes Catégoris<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            @for(g <- lcf) {
+                            <li><a href="/genre/@g.genre">@g.genre</a></li>
+                            }
+                        </ul>
+                    </li>}else{}
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/aleatoire">Trouver un Manga<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li><a href="/aleatoire">Aléatoire</a></li>
+                            <li><a href="/suggestion">Suggestion</a></li>
+
+                        </ul>
+
+
+                    <li><a href="/UserPanel">Aidez nous</a></li>
+                    <li><a href="/RechercheAvancee">Recherche Avancée</a></li>
+
+                    @if(session.get("co") == null) {
+                    <li   ><a href="/connexion" >Connexion - Inscription</a></li>
+                    }else{
+
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">@user.pseudo<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="/profil ">Profil</a></li>
+                            <li><a href="/Deconnexion ">Déconnection</a></li>
+
+                        </ul>
+                    </li>
+
+
+                    }
+
+
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <div style="float:left">
+            <div class="span4">
+                <form class="form-search" action="/recherche" method="POST">
+                    <div class="input-append">
+                        <input type="text" class="span2 search-query" name="ch">
+                        <button type="submit" class="btn" >Chercher!</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+            <!-- Mobile Nav
+            ================================================== -->
+            <form action="#" id="mobile-nav" class="visible-phone">
+                <div class="mobile-nav-select">
+                    <select onchange="window.open(this.options[this.selectedIndex].value,'_top')">
+                        <option value="">Menu</option>
+                        <option value="/">Accuiel</option>
+                        <option value="/profil">Profil</option>
+                        <option value="/UserPanel">Aider nous</option>
+                        <option value="/RechercheAvancee">Recherche avancé</option>
+                    </select>
+                </div>
+            </form>
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+        </div>
+
+
+
+
+    </div><!-- End Header -->
+
+
+
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-54fdd255021ab20e" async="async"></script>

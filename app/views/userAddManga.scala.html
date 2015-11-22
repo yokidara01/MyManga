@@ -1,0 +1,131 @@
+@(user:Membre,lg:List[Genre],lcf:List[Catfav])
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>MyManga</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS
+    ================================================== -->
+    <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+    <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+    <!-- <link rel="stylesheet" href="css/bootstrap-responsive.css">-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap-responsive.css")">
+    <!--<link rel="stylesheet" href="css/prettyPhoto.css" />-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/prettyPhoto.css")">
+    <!--<link rel="stylesheet" href="css/flexslider.css" />-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/flexslider.css")">
+    <!-- <link rel="stylesheet" href="css/custom-styles.css">-->
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/custom-styles.css")">
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <link rel="stylesheet" href="css/style-ie.css"/>
+    <![endif]-->
+
+    <script type="text/javascript" src='@routes.Assets.at("javascripts/testSaisie.js")'></script>
+
+
+</head>
+
+<body class="home">
+
+
+@import tags._
+
+@header(user,lcf)
+
+
+
+
+
+<center>
+    <div id="ajoutmanga">
+
+        <form id="idform" class="form-horizontal" action="/userAddManga" name="formManga" method="POST" onsubmit="return testAddManga()"  >
+            <table border="0" cellpadding="1" cellspacing="1" style="width: 500px;">
+                <tbody>
+                <tr>
+                    <td>
+                        Titre:</td>
+                    <td>
+                        <input name="titre" type="text"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Auteur:</td>
+                    <td>
+                        <input name="auteur" type="text"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Date de Sortie:</td>
+                    <td>
+                        <input type="date" name="releasedate"> </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        Artiste:</td>
+                    <td>
+                        <input name="artiste" type="text"></td>
+                </tr>
+                <tr>
+                    <td>
+                        Genre:</td>
+                    <td>
+
+
+                        @for(g <- lg) {
+                        <p><input name='genre[]' type='checkbox' value="@g.genre" />@g.genre</p>
+                        }
+
+
+
+
+
+
+
+
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Sommaire:</td>
+                    <td>
+                        <textarea rows="4" cols="50" name="sommaire"></textarea></td>
+                </tr>
+                <tr>
+                    <td>
+                        Statue:</td>
+                    <td>
+                        <select name="statue">
+                            <option  value="Termine">Terminé</option>
+                            <option value="En cours">En cours</option>
+                            <option value="One Shot">One Shot</option>
+                            <option value="Annulé">Annulé</option>
+                        </select></td>
+                </tr>
+                <tr>
+                    <td>
+                        Nombre des Chapitres:</td>
+                    <td>
+                        <input name="nbrchap" type="text" ></td>
+                </tr>
+
+
+                </tbody>
+            </table>
+            <input type="submit" value="Ajouter">
+        </form>
+    </div>
+</center>
+
+
+
+
+</body>
+</html>

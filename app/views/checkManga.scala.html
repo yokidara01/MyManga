@@ -1,0 +1,58 @@
+@(user:Membre,m: Manga)
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+
+<div class="panel-heading"><span class="label label-info">Liste des Manga:</span></div>
+<div class="panel panel-default">
+    <form action="/mdfManga" method="POST">
+        <table class="table" >
+            <tbody>
+            <tr>
+                <td>
+                    Titre</td>
+
+                <td>
+                    Auteur</td>
+
+                <td>
+                    Statue</td>
+
+                <td>
+                    Nombre des Chapitres</td>
+
+
+            </tr>
+
+            <tr>
+                <td><input type='text' name="titre" value='@m.titre'></td>
+                <td><input type='text' name="auteur" value='@m.auteur'></td>
+                <td><input type='text' name="statue" value='@m.statue'></td>
+                <td><input type='text' name="nbrchap" value='@m.nbrchap'></td>
+
+            </tr>
+
+
+
+            </tbody>
+        </table>
+        <center>
+                <h2>Coverture</h2>
+            <img width="30%" height="70%" src="@routes.Assets.at("images/Mangas/"+m.avatar)" class="align-left thumbnail" alt="404 non trouver" style="border: gray;
+            border-style: inset;">
+
+        <input type='hidden' name="id" value='@m.id'>
+        <input type="submit" value="Accpeter"> ou
+            <a href="/deleteSuggestion/@m.id" ><i class="icon-trash"></i></a>
+        </center>
+    </form>
+
+</div>
+</body>
+</html>

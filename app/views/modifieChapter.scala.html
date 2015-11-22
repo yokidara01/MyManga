@@ -1,0 +1,70 @@
+@(user:Membre,lm:List[Manga],lc:List[Chapter],c:Chapter)
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AdminLTE 2 | Dashboard</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ont-awesome.min.css")">
+
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ionicons.min.css")">
+
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/AdminLTE.min.css")">
+
+    <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/skins/_all-skins.min.css")">
+
+
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body class="skin-blue">
+
+@import tags._
+
+@Header_Admin(lm:List[Manga],lc:List[Chapter])
+
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="box">
+
+            <div class="box-body">
+
+<form action="/modifierChapitre" method="post"
+        >
+    <table>
+
+        <tr><td>Numero de chapitre:</td><td><input type="text" name="nbr" value="@c.nbr_chapter"></td></tr>
+        <tr><td>Titre de chapitre:</td><td><input type="text" name="titre" value="@c.titre"></td></tr>
+        <input type="hidden" name="id" value="@c.id">
+        </div>
+
+
+
+
+
+            <!-- <input type="file" id="file" name="file" name="file1" size="50" multiple="multiple"  accept="image/*" required /><input  type="file" id="file" name="file1" accept="image/*"  multiple="muliple" required> --></td></tr>
+        <tr><td colspan="2"> <input type="submit" value="Envoiyer"></td></tr>
+    </table>
+    <br><br>
+</form></div></section></div>
+</body>
+</html>

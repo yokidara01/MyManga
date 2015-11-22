@@ -1,0 +1,299 @@
+    @(user:Membre , lg:List[Genre] ,lcf : List[Catfav],lbm:List[Bookmark])
+    <!DOCTYPE html>
+    <html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>MyManga</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- CSS
+        ================================================== -->
+        <link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+        <!--<link rel="stylesheet" href="css/bootstrap.css">-->
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+        <!-- <link rel="stylesheet" href="css/bootstrap-responsive.css">-->
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap-responsive.css")">
+        <!--<link rel="stylesheet" href="css/prettyPhoto.css" />-->
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/prettyPhoto.css")">
+        <!--<link rel="stylesheet" href="css/flexslider.css" />-->
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/flexslider.css")">
+        <!-- <link rel="stylesheet" href="css/custom-styles.css">-->
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/custom-styles.css")">
+
+        <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <link rel="stylesheet" href="css/style-ie.css"/>
+        <![endif]-->
+
+        <!-- Favicons
+        ================================================== -->
+
+        <!-- <link rel="shortcut icon" href="img/favicon.ico">-->
+        <!--<img src="@routes.Assets.at("images/favicon.ico")" alt=""   rel="shortcut icon"/>-->
+        <!-- <link rel="apple-touch-icon" href="img/apple-touch-icon.png">-->
+        <!--<img src="@routes.Assets.at("images/apple-touch-icon.png")" alt=""   rel="apple-touch-icon" />-->
+        <!--<link rel="apple-touch-icon" sizes="72x72" href="img/apple-touch-icon-72x72.png">-->
+        <!--<img src="@routes.Assets.at("images/apple-touch-icon-72x72.png")" alt="" sizes="72x72" rel="apple-touch-icon" />-->
+        <!--<link rel="apple-touch-icon" sizes="114x114" href="img/apple-touch-icon-114x114.png">-->
+        <!--<img src="@routes.Assets.at("images/apple-touch-icon-114x114.png")" alt="" sizes="114x114" rel="apple-touch-icon"  />
+        <!-- JS
+        ================================================== -->
+        <script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+        <!--<script src="js/bootstrap.js"></script>-->
+        <script src="@routes.Assets.at("javascripts/bootstrap.js")">
+        <!--<script src="js/jquery.prettyPhoto.js"></script>-->
+        <script src="@routes.Assets.at("javascripts/jquery.prettyPhoto.js")">
+        <!--<script src="js/jquery.flexslider.js"></script>-->
+        <script src="@routes.Assets.at("javascripts/jquery.flexslider.js")">
+        <!--<script src="js/jquery.custom.js"></script>-->
+        <script src="@routes.Assets.at("javascripts/jquery.custom.js")">
+        <script type="text/javascript">
+    $(document).ready(function () {
+
+        $("#btn-blog-next").click(function () {
+          $('#blogCarousel').carousel('next')
+        });
+         $("#btn-blog-prev").click(function () {
+          $('#blogCarousel').carousel('prev')
+        });
+
+         $("#btn-client-next").click(function () {
+          $('#clientCarousel').carousel('next')
+        });
+         $("#btn-client-prev").click(function () {
+          $('#clientCarousel').carousel('prev')
+        });
+
+    });
+
+     $(window).load(function(){
+
+        $('.flexslider').flexslider({
+            animation: "slide",
+            slideshow: true,
+            start: function(slider){
+              $('body').removeClass('loading');
+            }
+        });
+    });
+
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </head>
+
+    <body class="home">
+
+
+    @import tags._
+
+    @header(user,lcf)
+    @if(user.rang>0){
+    <center><p><button class="btn btn-large btn-inverse" type="button" onclick="window.location.href='/ADMIN'">Panneau d'administration</button></p></center>}
+
+
+
+
+    <center>
+
+
+        <div class="span12" >
+            <h2>Gestion de Compte :</h2>
+            <div class="row">
+                <form action="/UpdateProfil" method="POST">
+                <div class="span12">
+                    <div class="well" style="max-width:300px !important">
+                        <div class="input-prepend">
+
+                            <span class="add-on">Pseudo:</span>
+                            <input class="span2" id="prependedInput" size="16" type="text" placeholder="Pseudo" name="Pseudo" value="@user.pseudo">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="span12">
+                    <div class="well"  style="max-width:300px !important">
+                        <div class="input-prepend">
+
+                            <span class="add-on">E-mail:</span>
+                            <input class="span2" id="prependedInput" width="50px" type="text" placeholder="E-mail" name="email" value="@user.email" style="min-width:50px">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="span12">
+                    <div class="well"  style="max-width:300px !important">
+                        <div class="input-prepend">
+
+                            <span class="add-on">Mdp:</span>
+                            <input class="span2" id="prependedInput" size="23" type="password" placeholder="mot de pass" name="mdp" value="@user.mdp">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+                <div class="span12">
+                    <div class="well"  style="max-width:300px !important">
+                        <div class="input-prepend">
+
+                            <span class="add-on">Confirmer Mdp:</span>
+                            <input class="span2" id="prependedInput" size="23" type="text" placeholder="Confirmation de Mdp" name="cMdp">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+
+
+                <div class="span12">
+                    <div class="well"  style="max-width:300px !important">
+                        <button type="submit" class="btn">Enregistrer</button>
+                    </div>
+                </div>
+
+                <br>
+            </div>
+            </form>
+        </div>
+
+
+</center>
+
+
+
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<center>
+
+    <div class="well">
+        <h2>Catégories farovis :</h2>
+        <h3>Vos Catégories :</h3>
+
+
+
+        <div class="well">
+        @for(cf<-lcf) {
+
+           @cf.genre -
+
+        }</div>
+    </div>
+
+
+
+
+
+        <form method="POST" name="catfav" id="catfav"
+              action="/sauveCatFav " >
+        <!-- Squared TWO -->
+    <table>
+        @for(g <-lg) {
+        <tr><td>
+    @g.genre</td><td>
+
+
+
+                <input type="checkbox" value="@g.genre" name="genre" />
+
+
+
+           </td></tr>
+        }
+
+
+    </table>
+        <br>
+
+
+        <div class="span12">
+            <div class="well"  style="max-width:300px !important">
+                <button type="submit" class="btn">Enregistrer</button>
+            </div>
+        </div>
+
+        </form>
+        </div>
+
+
+
+
+
+
+        <br><br><br>
+
+        <div class="list-group" style="max-width:30%;  background-color: gainsboro;
+  border-style: groove;">
+            <h2>
+               Liste de suivie:
+            </h2>
+            <ul class="the-icons">
+            @for(bm <-lbm) {
+            <a href="/Manga/@bm.manga" class="list-group-item">@bm.titre_manga</a> <a href="/deleteBookmark/@bm.manga" ><i class="icon-trash"></i></a>
+            <hr>
+            }</ul>
+        </div>
+
+
+        <br><br><br><br><br><br><br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    </center>
+    </body>
+    </html>

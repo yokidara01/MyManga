@@ -1,0 +1,40 @@
+@(user:Membre,listManga:List[Manga],lcf:List[Catfav])
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+
+<body class="home">
+
+
+@import tags._
+
+@header(user,lcf)
+<center>
+<form action="/userAddChapter" method="post"
+        >
+    <table>
+
+        <tr><td>Numero de chapitre:</td><td><input type="text" name="nbr"></td></tr>
+        <tr><td>Titre de chapitre:</td><td><input type="text" name="titre"></td></tr>
+        <tr><td>Selectionné manga : </td><td><select name='manga'>
+            @for(g <- listManga) {
+            <option  value="@g.id">@g.titre</option>
+            }
+        </select></td></tr>
+        </div>
+
+
+        <tr><td></td><td>
+
+
+            <!-- <input type="file" id="file" name="file" name="file1" size="50" multiple="multiple"  accept="image/*" required /><input  type="file" id="file" name="file1" accept="image/*"  multiple="muliple" required> --></td></tr>
+        <tr><td colspan="2"> <input type="submit" value="Envoiyer"></td></tr>
+    </table>
+    <br><br>
+</form>
+</center>
+</body>
+</html>

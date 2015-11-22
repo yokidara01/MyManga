@@ -1,0 +1,22 @@
+@(user:Membre,m:Manga,id:Integer,lcf:List[Catfav])
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+@import tags._
+
+@header(user,lcf)<center>
+<div class="well">
+<form action="/UploadingChapter" method="post"
+      enctype="multipart/form-data">
+    <h3>Parcourire les images de chapitre : </h3>
+    <input type="file" id="file" name="file" name="file1" size="50" multiple="multiple"  accept="image/*"/ required>
+<input type="submit">
+    </form>
+    </div></center>
+</body>
+</html>

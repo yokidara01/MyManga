@@ -1,0 +1,82 @@
+@(user :Membre,lm:List[Manga],lc:List[Chapter],lca:List[Chapter],lam:List[Manga])
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AdminLTE 2 | Dashboard</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ont-awesome.min.css")">
+
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ionicons.min.css")">
+
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/AdminLTE.min.css")">
+
+    <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/skins/_all-skins.min.css")">
+
+
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body class="skin-blue">
+
+@import tags._
+
+@Header_Admin(lm:List[Manga],lc:List[Chapter])
+
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="box">
+
+            <div class="box-body">
+
+
+
+                <div class="panel-heading"><span class="label label-info">Liste des Manga:</span></div>
+                <div class="panel panel-default">
+
+
+
+                            @for(g <- lam) {
+                            <div class="well">
+                                <p>Manga : @g.titre</p>
+                                @for(c <- lca) {
+                                @if(c.id_manga==g.id){
+                                <a href="/DeleteChapter/@c.id" class="list-group-item">
+                                <p>Titre Chapitre :@c.titre N° @c.nbr_chapter</p></a>
+
+                                }
+                                }
+                            </div>
+}
+
+
+
+
+
+
+                </div>
+
+
+
+
+                </div></div></section></div>
+</body>
+</html>

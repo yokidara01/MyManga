@@ -1,0 +1,29 @@
+@(user:Membre,lcf:List[Catfav],message:String)
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script>
+    setTimeout(function(){
+         window.location.href = '/'
+    },2000);
+</script>
+</head>
+
+<body class="home">
+
+
+@import tags._
+
+@header(user,lcf)
+
+<center>
+    <div class="well">
+        <h2>@message</h2>
+    </div>
+
+</center>
+
+
+
+</body>
+</html>

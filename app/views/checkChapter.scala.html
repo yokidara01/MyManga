@@ -1,0 +1,86 @@
+@(user :Membre,lm:List[Manga],lc:List[Chapter],c:Chapter)
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>AdminLTE 2 | Dashboard</title>
+    <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/bootstrap.css")">
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ont-awesome.min.css")">
+
+    <link href="http://code.ionicframework.com/ionicons/2.0.0/css/ionicons.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/ionicons.min.css")">
+
+    <link href="dist/css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/AdminLTE.min.css")">
+
+    <link href="dist/css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/admin_css/css_admin/skins/_all-skins.min.css")">
+
+
+
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body class="skin-blue">
+
+@import tags._
+
+@Header_Admin(lm:List[Manga],lc:List[Chapter])
+
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+
+
+    <!-- Main content -->
+    <section class="content">
+
+        <!-- Default box -->
+        <div class="box">
+
+            <div class="box-body">
+
+
+<div class="panel-heading"><span class="label label-info">Liste des chapitres:</span></div>
+<div class="panel panel-default">
+    <form action="/mdfChapter" method="POST">
+        <table class="table" >
+            <tbody>
+            <tr>
+                <td>
+                    Titre</td>
+
+                <td>
+                    nbr_chapter</td>
+
+
+
+            </tr>
+
+            <tr>
+                <td><input type='text' name="titre" value='@c.titre'></td>
+                <td><input type='text' name="nbr_chapter" value='@c.nbr_chapter'></td>
+
+
+            </tr>
+
+
+
+            </tbody>
+        </table>
+        <br>
+
+        <input type='hidden' name="id" value='@c.id'>    <a href="/detailsChapitre/@c.id_manga/@c.nbr_chapter">Voir les details</a>
+        <input type="submit" value="Accpeter">
+    </form>
+
+</div></div></div></section></div>
+</body>
+</html>
